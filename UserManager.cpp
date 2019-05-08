@@ -1,5 +1,44 @@
 #include "UserManager.h"
 
+
+void UserManager::userLogOut(){
+    idOfLoggedUser = 0;
+}
+
+void UserManager::userLogIn() {
+
+    string login = "", password = "";
+
+    cout << "      >>> LOGOWANIE <<<" << endl;
+    cout << "--------------------------------" << endl;
+    cout << "Podaj login: ";
+    cin >> login;
+
+    vector <User>::iterator itr = users.begin();
+    while (itr != users.end()) {
+        if (itr -> getLogin() == login) {
+            for (int choiceAmount = 3; choiceAmount > 0; choiceAmount--) {
+                cout << "Podaj haslo. Pozostalo prob: " << choiceAmount << ": ";
+                cin >> password;
+
+                if (itr -> getPassword() == password) {
+                    idOfLoggedUser = itr -> getId();
+                    cout << endl << "Zalogowales sie." << endl << endl;
+                    system("pause");
+                    return;
+                }
+            }
+            cout << "Wprowadzono 3 razy bledne haslo." << endl;
+            system("pause");
+            return;
+        }
+        itr++;
+    }
+    cout << "Nie ma uzytkownika z takim loginem" << endl << endl;
+    system("pause");
+    return;
+}
+
 User UserManager::EnterDataOfNewUser() {
 
     User user;
@@ -7,7 +46,7 @@ User UserManager::EnterDataOfNewUser() {
 
     string login, password, name, surname;
 
-    cout << "      >>> LOGOWANIE <<<" << endl;
+    cout << "      >>> REJESTRACJA <<<" << endl;
     cout << "--------------------------------" << endl;
     do {
         cout << "Podaj login: ";

@@ -1,14 +1,15 @@
 #include <iostream>
-#include "UserManager.h"
+#include "Budget.h"
 
 using namespace std;
 
 int main()
 {
 
-UserManager usermanager("users.xml");
+Budget budget("users.xml");
 
-usermanager.registerUser();
+//budget.registerUser();
+budget.userLogIn();
 
     return 0;
 }

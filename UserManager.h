@@ -24,6 +24,8 @@ public:
         users = userFile.fetchUsersDataFromFile();
     };
     void registerUser();
+    void userLogOut();
+    void userLogIn();
     //void wypiszWszystkichUzytkownikow();
     //void logowanieUzytkownika();
     //void ustawIDZalogowanegoUzytkownika(int noweID);
