@@ -1,0 +1,9 @@
+bin/
+
+obj/
+
+BudgetXML.*
+
+users.xml
+incomes.xml
+expenses.xml
