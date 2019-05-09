@@ -5,10 +5,20 @@ void UserManager::userLogOut(){
     idOfLoggedUser = 0;
 }
 
+bool UserManager::ifUserIsLogged(){
+
+if (idOfLoggedUser > 0)
+    return true;
+else
+    return false;
+}
+
+
+
 void UserManager::userLogIn() {
 
     string login = "", password = "";
-
+    system("cls");
     cout << "      >>> LOGOWANIE <<<" << endl;
     cout << "--------------------------------" << endl;
     cout << "Podaj login: ";

@@ -26,6 +26,7 @@ public:
     void registerUser();
     void userLogOut();
     void userLogIn();
+    bool ifUserIsLogged();
     //void wypiszWszystkichUzytkownikow();
     //void logowanieUzytkownika();
     //void ustawIDZalogowanegoUzytkownika(int noweID);
