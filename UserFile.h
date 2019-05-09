@@ -17,11 +17,13 @@ class UserFile :public File{
 
 public:
     UserFile(string nameOfUserFile) : NAME_OF_USER_FILE(nameOfUserFile) {};
+
     void appendUserToFile(User user);
     vector <User> fetchUsersDataFromFile();
     bool ifFileIsEmpty(){
         File::ifFileIsEmpty(xml);
     }
+    void saveUsersToFile(int &idOfLoggedUser, string newPassword);
 };
 
 #endif

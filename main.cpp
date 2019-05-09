@@ -40,6 +40,7 @@ int main() {
          case '5':
             break;
          case '6':
+            budget.changeUserPassword();
             break;
          case '9':
             budget.userLogOut();
