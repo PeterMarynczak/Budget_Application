@@ -15,6 +15,10 @@ bool Budget::ifUserIsLogged(){
     userManager.ifUserIsLogged();
 }
 
+void Budget::changeUserPassword(){
+    userManager.changeUserPassword();
+}
+
 char Budget::chooseOptionFromMainMenu(){
 
     char choice;

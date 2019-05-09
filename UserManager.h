@@ -27,13 +27,8 @@ public:
     void userLogOut();
     void userLogIn();
     bool ifUserIsLogged();
-    //void wypiszWszystkichUzytkownikow();
-    //void logowanieUzytkownika();
-    //void ustawIDZalogowanegoUzytkownika(int noweID);
-    //int pobierzIdZalogowanegoUzytkownika();
-    //bool czyUzytkownikJestZalogowany();
-    //void wylogowanieUzytkownika();
-    //void zmianaHaslaZalogowanegoUzytkownika();
+    void changeUserPassword();
+
 
 };
 

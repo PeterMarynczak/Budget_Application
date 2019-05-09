@@ -20,6 +20,7 @@ public:
     char chooseOptionFromMainMenu();
     char chooseOptionFromUserMenu();
     bool ifUserIsLogged();
+    void changeUserPassword();
 
 };
 

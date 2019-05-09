@@ -29,17 +29,10 @@ vector <User> UserFile::fetchUsersDataFromFile() {
 void UserFile::appendUserToFile(User user) {
 
     xml.Load(NAME_OF_USER_FILE.c_str());
+
     if (ifFileIsEmpty()) {
         xml.AddElem( "USER_INFO" );
         xml.IntoElem();
-        xml.AddElem( "USER" );
-        xml.IntoElem();
-        xml.AddElem( "USER_ID", user.getId() );
-        xml.AddElem( "LOGIN", user.getLogin() );
-        xml.AddElem( "PASSWORD", user.getPassword() );
-        xml.AddElem( "NAME", user.getName() );
-        xml.AddElem( "SURNAME", user.getSurname());
-        xml.OutOfElem();
     } else {
         xml.FindElem( "USER_INFO" );
         xml.IntoElem();
@@ -52,7 +45,49 @@ void UserFile::appendUserToFile(User user) {
         xml.AddElem( "SURNAME", user.getSurname());
         xml.OutOfElem();
     }
-
     MCD_STR strXML = xml.GetDoc();
-    xml.Save("users.xml");
+    xml.Save(NAME_OF_USER_FILE.c_str());
 }
+
+void UserFile::saveUsersToFile(int &idOfLoggedUser, string newPassword) {
+
+    bool bSuccess = xml.Load(NAME_OF_USER_FILE.c_str());
+
+    if (bSuccess == true) {
+    xml.ResetPos();
+    xml.FindElem( "USER_INFO" );
+    xml.IntoElem();
+    while (xml.FindElem("USER")){
+        xml.IntoElem();
+        xml.FindElem("USER_ID");
+        int nQty = atoi( MCD_2PCSZ(xml.GetData()) );
+        if (nQty == idOfLoggedUser){
+        xml.FindElem("PASSWORD");
+        //xml.RemoveNode();
+        xml.SetData(newPassword );
+        }
+    }
+    xml.Save(NAME_OF_USER_FILE.c_str());
+    } else {
+        cout << "Nie mozna otworzyc pliku " << NAME_OF_USER_FILE << endl;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

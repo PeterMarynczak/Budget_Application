@@ -103,3 +103,20 @@ void UserManager::registerUser() {
     cout << endl << "Konto zalozono pomyslnie" << endl << endl;
     system("pause");
 }
+
+void UserManager::changeUserPassword(){
+
+    string newPassword;
+    cout << "Podaj nowe haslo: ";
+    cin >> newPassword;
+
+    for (vector <User>::iterator itr = users.begin(); itr != users.end(); itr++){
+        if (itr -> getId() == idOfLoggedUser){
+            itr -> setPassword(newPassword);
+            cout << "Haslo zostalo zmienione." << endl;
+            system("pause");
+        }
+    }
+    userFile.saveUsersToFile(idOfLoggedUser, newPassword);
+}
+
