@@ -56,6 +56,7 @@ User UserManager::EnterDataOfNewUser() {
 
     string login, password, name, surname;
 
+    system("cls");
     cout << "      >>> REJESTRACJA <<<" << endl;
     cout << "--------------------------------" << endl;
     do {

@@ -32,8 +32,7 @@ void UserFile::appendUserToFile(User user) {
 
     if (ifFileIsEmpty()) {
         xml.AddElem( "USER_INFO" );
-        xml.IntoElem();
-    } else {
+    }
         xml.FindElem( "USER_INFO" );
         xml.IntoElem();
         xml.AddElem( "USER" );
@@ -44,28 +43,28 @@ void UserFile::appendUserToFile(User user) {
         xml.AddElem( "NAME", user.getName() );
         xml.AddElem( "SURNAME", user.getSurname());
         xml.OutOfElem();
-    }
+
     MCD_STR strXML = xml.GetDoc();
     xml.Save(NAME_OF_USER_FILE.c_str());
 }
 
 void UserFile::saveUsersToFile(int &idOfLoggedUser, string newPassword) {
 
-    bool bSuccess = xml.Load(NAME_OF_USER_FILE.c_str());
+    bool fileExists = xml.Load(NAME_OF_USER_FILE.c_str());
 
-    if (bSuccess == true) {
+    if (fileExists == true) {
     xml.ResetPos();
     xml.FindElem( "USER_INFO" );
     xml.IntoElem();
     while (xml.FindElem("USER")){
         xml.IntoElem();
         xml.FindElem("USER_ID");
-        int nQty = atoi( MCD_2PCSZ(xml.GetData()) );
-        if (nQty == idOfLoggedUser){
+        int getUserIdFromXMLfile = atoi( MCD_2PCSZ(xml.GetData()) );
+        if (getUserIdFromXMLfile == idOfLoggedUser){
         xml.FindElem("PASSWORD");
-        //xml.RemoveNode();
         xml.SetData(newPassword );
         }
+        xml.OutOfElem();
     }
     xml.Save(NAME_OF_USER_FILE.c_str());
     } else {
