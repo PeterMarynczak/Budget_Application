@@ -84,7 +84,7 @@ Expense BalanceManager::enterNewInfoAboutExpense() {
     expense.setUserId(ID_OF_LOGGED_USER);
     expense.setExpenseId(expensesFile.getIdOfLastExpense()+1);
 
-    cout << "czy przychod dotyczy dnia dzisiejszego, tak lube nie (t/n)? ";
+    cout << "czy wydatek dotyczy dnia dzisiejszego, tak lube nie (t/n)? ";
 
     do {
         choice = AdjuvantMethods::loadMark();
@@ -108,11 +108,11 @@ Expense BalanceManager::enterNewInfoAboutExpense() {
         }
     } while(choice != 't' && choice != 'n');
 
-    cout << endl << "Napisz czego dotyczyl przychod: ";
+    cout << endl << "Napisz czego dotyczyl wydatek: ";
     item = AdjuvantMethods::readLine();
     expense.setItem(item);
 
-    cout << endl << "Podaj wysokosc przychodu: ";
+    cout << endl << "Podaj wysokosc wydatku: ";
     amount = AdjuvantMethods::readLine();
     amount = AdjuvantMethods::changeCommaToDot(amount);
     expense.setAmount(amount);

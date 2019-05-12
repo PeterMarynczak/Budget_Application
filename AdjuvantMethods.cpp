@@ -132,7 +132,7 @@ string AdjuvantMethods::changeCommaToDot(string amount){
 
 for (int i = 0; i < amount.length(); i++){
     if(amount[i] == ',')
-        amount[i] == '.';
+        amount[i] = '.';
 }
 return amount;
 }
