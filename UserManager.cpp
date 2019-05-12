@@ -13,7 +13,9 @@ else
     return false;
 }
 
-
+int UserManager::getIdOfLoggedUser(){
+return idOfLoggedUser;
+}
 
 void UserManager::userLogIn() {
 

@@ -7,6 +7,7 @@
 
 #include "income.h"
 #include "incomeFile.h"
+#include "AdjuvantMethods.h"
 
 using namespace std;
 

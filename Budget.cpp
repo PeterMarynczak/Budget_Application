@@ -1,14 +1,23 @@
 #include "Budget.h"
 
+void Budget::addIncome(){
+    balanceManager->addIncome();
+}
+
 void Budget::registerUser(){
     userManager.registerUser();
 }
 void Budget::userLogIn(){
     userManager.userLogIn();
+        if (userManager.ifUserIsLogged()){
+        balanceManager = new BalanceManager(INCOME_FILE_NAME, userManager.getIdOfLoggedUser());
+    }
 }
 
 void Budget::userLogOut(){
     userManager.userLogOut();
+    delete balanceManager;
+    balanceManager = NULL;
 }
 
 bool Budget::ifUserIsLogged(){

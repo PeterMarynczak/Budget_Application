@@ -3,8 +3,8 @@
 
 using namespace std;
 
-int _main() {
-    Budget budget("users.xml");
+int main() {
+    Budget budget("users.xml", "incomes.xml");
 
     char choice;
     while(true) {
@@ -30,6 +30,7 @@ int _main() {
             choice = budget.chooseOptionFromUserMenu();
             switch (choice){
          case '1':
+             budget.addIncome();
             break;
          case '2':
             break;
@@ -52,7 +53,7 @@ int _main() {
     return 0;
 }
 
-#include "income.h"
+/*#include "income.h"
 #include "incomeFile.h"
 #include "BalanceManager.h"
 
@@ -67,7 +68,7 @@ balanceManager.showIncomes();
 
 //incomeFile.appendIncomeToFile(income);
 
-}
+}*/
 
 
 
