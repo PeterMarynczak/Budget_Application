@@ -3,7 +3,7 @@
 
 using namespace std;
 
-int main() {
+int _main() {
     Budget budget("users.xml");
 
     char choice;
@@ -51,3 +51,41 @@ int main() {
 
     return 0;
 }
+
+#include "income.h"
+#include "incomeFile.h"
+#include "BalanceManager.h"
+
+int main(){
+
+BalanceManager balanceManager("incomes.xml", 1);
+balanceManager.showIncomes();
+
+//IncomeFile incomeFile("incomes.xml");
+
+//Income income(1,2,"2017-11-01","Zakupy","2134.50");
+
+//incomeFile.appendIncomeToFile(income);
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

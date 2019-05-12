@@ -11,6 +11,15 @@ class User{
     string login, password, name, surname;
 
 public:
+    User(int id=0, string login="", string password ="", string name="", string surname =""){
+
+        this->id = id;
+        this->login = login;
+        this->password = password;
+        this->name = name;
+        this->surname = surname;
+    }
+
     void setId(int newId);
     void setLogin(string newLogin);
     void setPassword(string newPassword);

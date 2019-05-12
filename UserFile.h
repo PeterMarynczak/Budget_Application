@@ -1,5 +1,6 @@
 #ifndef USERFILE_H
 #define USERFILE_H
+
 #include <iostream>
 #include <vector>
 #include <cstdlib>
