@@ -29,7 +29,6 @@ public:
     vector <Income> fetchIncomesOfLoggedUserFromFile(int idOfLoggedUser);
     bool appendIncomeToFile(Income income);
     int getIdOfLastIncome();
-    //vector <User> fetchUsersDataFromFile();
 
     //void saveUsersToFile(int &idOfLoggedUser, string newPassword);
 };

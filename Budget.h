@@ -15,10 +15,11 @@ UserManager userManager;
 BalanceManager *balanceManager;
 
 const string INCOME_FILE_NAME;
+const string EXPENSES_FILE_NAME;
 
 public:
-    Budget(string userFileName, string incomeFileName)
-    : userManager(userFileName), INCOME_FILE_NAME(incomeFileName) {
+    Budget(string userFileName, string expensesFileName ,string incomeFileName)
+    : userManager(userFileName), EXPENSES_FILE_NAME(expensesFileName) ,INCOME_FILE_NAME(incomeFileName) {
 
         balanceManager = NULL;
     };
@@ -34,6 +35,7 @@ public:
     bool ifUserIsLogged();
     void changeUserPassword();
     void addIncome();
+    void addExpense();
 
 };
 
