@@ -36,6 +36,7 @@ int main() {
              budget.addExpense();
             break;
          case '3':
+             budget.showBilanceFromCurrentMonth();
             break;
          case '4':
             break;

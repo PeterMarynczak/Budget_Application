@@ -136,8 +136,33 @@ void BalanceManager::showIncomes() {
 }
 
 void BalanceManager::showIncomeData(Income income) {
+
+    int sum = 0;
+    int AmountOfDaysFromCurrentMonth = AdjuvantMethods::lastDayOfCurrentMonth();
+    int lastDateInInt = AdjuvantMethods::getDateOfLastDayFromCurrentMonthInInt();
+    int dateFromVector = AdjuvantMethods::convertDateToInt(income.getDate());
+
+    if ( (dateFromVector <= lastDateInInt) && (dateFromVector >= lastDateInInt - AmountOfDaysFromCurrentMonth))
+    {
     cout << endl << "Id:         " << income.getIncomeId() << endl;
     cout << "Data:               " << income.getDate() << endl;
     cout << "Item:               " << income.getItem() << endl;
     cout << "kwota przychodu:    " << income.getAmount() << endl;
+    }
 }
+
+void BalanceManager::showBilanceFromCurrentMonth(){
+
+
+    system("cls");
+        cout << "        >>> BILANS Z BIEZACEGO MIESIACA <<<" << endl;
+        cout << "-----------------------------------------------" << endl;
+        for (vector <Income> :: iterator itr = incomes.begin(); itr != incomes.end(); itr++) {
+            showIncomeData(*itr);
+        }
+        cout << endl;
+
+    system("pause");
+}
+
+

@@ -36,6 +36,7 @@ public:
     void changeUserPassword();
     void addIncome();
     void addExpense();
+    void showBilanceFromCurrentMonth();
 
 };
 
