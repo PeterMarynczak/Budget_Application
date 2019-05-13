@@ -55,6 +55,15 @@ bool AdjuvantMethods::checkIfDateIsCorrect(string date) {
         return false;
 }
 
+int AdjuvantMethods::getDateOfLastDayFromCurrentMonthInInt(){
+
+    time_t currentTime = time(0);
+    tm* now = localtime(&currentTime);
+    int latestDate = (((now->tm_year + 1900) * 10000) + (100 * (now->tm_mon + 1) + lastDayOfCurrentMonth()));
+    return latestDate;
+}
+
+
 string AdjuvantMethods::getCurrentDate() {
 
     string date = "";

@@ -8,6 +8,10 @@ void Budget::addExpense(){
     balanceManager->addExpense();
 }
 
+void Budget::showBilanceFromCurrentMonth(){
+    balanceManager->showBilanceFromCurrentMonth();
+}
+
 void Budget::registerUser(){
     userManager.registerUser();
 }
