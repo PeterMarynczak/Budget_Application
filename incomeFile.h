@@ -30,7 +30,6 @@ public:
     bool appendIncomeToFile(Income income);
     int getIdOfLastIncome();
 
-    //void saveUsersToFile(int &idOfLoggedUser, string newPassword);
 };
 
 #endif

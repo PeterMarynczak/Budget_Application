@@ -41,14 +41,15 @@ vector <Expense> ExpensesFile::fetchExpensesOfLoggedUserFromFile(int idOfLoggedU
     xml.ResetPos();
     xml.FindElem("EXPENSES");
     xml.IntoElem();
-    while (xml.FindElem("EXPENSES")){
+    while (xml.FindElem("EXPENSE")){
         xml.IntoElem();
+        xml.FindElem("EXPENSE_ID");
+        idOfLastExpense = (atoi( MCD_2PCSZ(xml.GetData())));
         xml.FindElem("USER_ID");
         int getUserIdFromXMLfile = atoi( MCD_2PCSZ(xml.GetData()));
         if (getUserIdFromXMLfile == idOfLoggedUser){
             xml.ResetMainPos();
-            xml.FindElem("EXPENSE");
-            idOfLastExpense = (atoi( MCD_2PCSZ(xml.GetData())));
+            xml.FindElem("EXPENSE_ID");
             expense.setExpenseId(atoi( MCD_2PCSZ(xml.GetData())));
             xml.FindElem("USER_ID");
             expense.setUserId(atoi( MCD_2PCSZ(xml.GetData())));

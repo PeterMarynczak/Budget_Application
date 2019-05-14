@@ -4,6 +4,7 @@
 #include <iostream>
 #include <vector>
 #include <windows.h>
+#include <algorithm>
 
 #include "income.h"
 #include "incomeFile.h"
@@ -17,13 +18,13 @@ class BalanceManager{
 
     IncomeFile incomeFile;
     ExpensesFile expensesFile;
+    const int ID_OF_LOGGED_USER;
     vector <Income> incomes;
     vector <Expense> expenses;
-    const int ID_OF_LOGGED_USER;
 
     Income enterNewInfoAboutIncome();
     Expense enterNewInfoAboutExpense();
-    void showIncomeData(Income income);
+    void showIncomeData();
 
 public:
     BalanceManager(string nameOfIncomeFile, string nameOfExpensesFile, int idOfLoggedUser)
@@ -32,9 +33,11 @@ public:
         expenses = expensesFile.fetchExpensesOfLoggedUserFromFile(ID_OF_LOGGED_USER);
     }
 
+
     void addIncome();
     void addExpense();
     void showIncomes();
+    void showExpensesData();
     void showBilanceFromCurrentMonth();
 
 };
