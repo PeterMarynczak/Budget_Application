@@ -120,47 +120,61 @@ Expense BalanceManager::enterNewInfoAboutExpense() {
     return expense;
 }
 
-void BalanceManager::showIncomes() {
-    system("cls");
-    if (!incomes.empty()) {
-        cout << "             >>> PRZYCHODY <<<" << endl;
-        cout << "-----------------------------------------------" << endl;
-        for (vector <Income> :: iterator itr = incomes.begin(); itr != incomes.end(); itr++) {
-            showIncomeData(*itr);
-        }
-        cout << endl;
-    } else {
-        cout << endl << "Nie dodano jeszcze zadnych przychodow" << endl << endl;
-    }
-    system("pause");
-}
 
-void BalanceManager::showIncomeData(Income income) {
+void BalanceManager::showIncomeData() {
 
-    int sum = 0;
+    float sumOfIncomes = 0;
     int AmountOfDaysFromCurrentMonth = AdjuvantMethods::lastDayOfCurrentMonth();
     int lastDateInInt = AdjuvantMethods::getDateOfLastDayFromCurrentMonthInInt();
-    int dateFromVector = AdjuvantMethods::convertDateToInt(income.getDate());
+    int dateFromVector = 0;
 
-    if ( (dateFromVector <= lastDateInInt) && (dateFromVector >= lastDateInInt - AmountOfDaysFromCurrentMonth))
-    {
-    cout << endl << "Id:         " << income.getIncomeId() << endl;
-    cout << "Data:               " << income.getDate() << endl;
-    cout << "Item:               " << income.getItem() << endl;
-    cout << "kwota przychodu:    " << income.getAmount() << endl;
+    for (int i = 0; i < incomes.size(); i++) {
+        dateFromVector = AdjuvantMethods::convertDateToInt(incomes[i].getDate());
+        if ( (dateFromVector <= lastDateInInt) && (dateFromVector >= lastDateInInt - AmountOfDaysFromCurrentMonth)) {
+            cout << endl << "Id przychodu: " << incomes[i].getIncomeId() << endl;
+            cout << "Data uzyskania przychodu:     " << incomes[i].getDate() << endl;
+            cout << "Przychod z tytulu:            " << incomes[i].getItem() << endl;
+            cout << "Kwota przychodu:              " << incomes[i].getAmount() << endl;
+            sumOfIncomes += atof(incomes[i].getAmount().c_str());
+        }
     }
+    cout << endl << "Suma przychodow w tym miesiacu wynosi: " << sumOfIncomes <<" zl" << endl;
+}
+
+void BalanceManager::showExpensesData() {
+
+    float sumOfExpenses = 0;
+    int AmountOfDaysFromCurrentMonth = AdjuvantMethods::lastDayOfCurrentMonth();
+    int lastDateInInt = AdjuvantMethods::getDateOfLastDayFromCurrentMonthInInt();
+    int dateFromVector = 0;
+
+    for (int i = 0; i < expenses.size(); i++) {
+        dateFromVector = AdjuvantMethods::convertDateToInt(expenses[i].getDate());
+        if ( (dateFromVector <= lastDateInInt) && (dateFromVector >= lastDateInInt - AmountOfDaysFromCurrentMonth)) {
+            cout << endl << "Id wydatku: " << expenses[i].getExpenseId() << endl;
+            cout << "Data wydatku:     "      << expenses[i].getDate() << endl;
+            cout << "Wydatek z tytulu:      " << expenses[i].getItem() << endl;
+            cout << "Kwota wydatku:         " << expenses[i].getAmount() << endl;
+            sumOfExpenses += atof(expenses[i].getAmount().c_str());
+        }
+    }
+    cout << endl << "Suma wydatkow w tym miesiacu wynosi: " << sumOfExpenses <<" zl";
 }
 
 void BalanceManager::showBilanceFromCurrentMonth(){
 
-
     system("cls");
-        cout << "        >>> BILANS Z BIEZACEGO MIESIACA <<<" << endl;
+        cout << "    >>> BILANS Z BIEZACEGO MIESIACA <<<" << endl;
         cout << "-----------------------------------------------" << endl;
-        for (vector <Income> :: iterator itr = incomes.begin(); itr != incomes.end(); itr++) {
-            showIncomeData(*itr);
-        }
+        cout << "             >>> PRZYCHODY <<<" << endl;
+        showIncomeData();
         cout << endl;
+        cout << "             >>> WYDATKI <<<" << endl;
+        showExpensesData();
+        cout << endl;
+        cout << "-----------------------------------------------" << endl;
+        cout << "      >>> BILANS Z BIEZACEGO MIESIACA <<<" << endl;
+
 
     system("pause");
 }

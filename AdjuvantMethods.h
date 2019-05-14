@@ -19,6 +19,7 @@ public:
     static bool checkIfDateIsCorrect(string date);
     static string readLine();
     static string getCurrentDate();
+    float convertStringToFloat(string number);
     static int getDateOfLastDayFromCurrentMonthInInt();
     static string checkIfSingleNumber (int number);
     static int lastDayOfCurrentMonth();

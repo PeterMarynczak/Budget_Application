@@ -27,7 +27,8 @@ bool IncomeFile::appendIncomeToFile(Income income){
     idOfLastAddedIncome++;
     if (idOfLastAddedIncome > 0)
         return true;
-    else return false;
+    else
+        return false;
 }
 
 vector <Income> IncomeFile::fetchIncomesOfLoggedUserFromFile(int idOfLoggedUser){
@@ -43,12 +44,13 @@ vector <Income> IncomeFile::fetchIncomesOfLoggedUserFromFile(int idOfLoggedUser)
     xml.IntoElem();
     while (xml.FindElem("INCOME")){
         xml.IntoElem();
+        xml.FindElem("INCOME_ID");
+        idOfLastIncome = (atoi( MCD_2PCSZ(xml.GetData())));
         xml.FindElem("USER_ID");
         int getUserIdFromXMLfile = atoi( MCD_2PCSZ(xml.GetData()));
         if (getUserIdFromXMLfile == idOfLoggedUser){
             xml.ResetMainPos();
             xml.FindElem("INCOME_ID");
-            idOfLastIncome = (atoi( MCD_2PCSZ(xml.GetData())));
             income.setIncomeId(atoi( MCD_2PCSZ(xml.GetData())));
             xml.FindElem("USER_ID");
             income.setUserId(atoi( MCD_2PCSZ(xml.GetData())));
