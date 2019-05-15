@@ -16,6 +16,10 @@ void Budget::showBilanceFromLastMonth(){
     balanceManager->showBilanceFromLastMonth();
 }
 
+void Budget::showBalanceFromSelectedPeriodOfTime(){
+    balanceManager->showBalanceFromSelectedPeriodOfTime();
+}
+
 void Budget::registerUser(){
     userManager.registerUser();
 }

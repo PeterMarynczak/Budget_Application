@@ -33,7 +33,7 @@ public:
         incomes = incomeFile.fetchIncomesOfLoggedUserFromFile(ID_OF_LOGGED_USER);
         expenses = expensesFile.fetchExpensesOfLoggedUserFromFile(ID_OF_LOGGED_USER);
     }
-    double bilance;
+    double balance;
     void addIncome();
     void addExpense();
     void showIncomes();
@@ -42,6 +42,7 @@ public:
     void showBilanceFromLastMonth();
     void showIncomeDataFromLastMonth();
     void showExpensesDataFromLastMonth();
+    void showBalanceFromSelectedPeriodOfTime();
 
 };
 
