@@ -26,19 +26,22 @@ class BalanceManager{
     Expense enterNewInfoAboutExpense();
     void showIncomeData();
 
+
 public:
     BalanceManager(string nameOfIncomeFile, string nameOfExpensesFile, int idOfLoggedUser)
     : incomeFile(nameOfIncomeFile), expensesFile(nameOfExpensesFile) ,ID_OF_LOGGED_USER(idOfLoggedUser)  {
         incomes = incomeFile.fetchIncomesOfLoggedUserFromFile(ID_OF_LOGGED_USER);
         expenses = expensesFile.fetchExpensesOfLoggedUserFromFile(ID_OF_LOGGED_USER);
     }
-
-
+    double bilance;
     void addIncome();
     void addExpense();
     void showIncomes();
     void showExpensesData();
     void showBilanceFromCurrentMonth();
+    void showBilanceFromLastMonth();
+    void showIncomeDataFromLastMonth();
+    void showExpensesDataFromLastMonth();
 
 };
 

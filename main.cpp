@@ -39,6 +39,7 @@ int main() {
              budget.showBilanceFromCurrentMonth();
             break;
          case '4':
+             budget.showBilanceFromLastMonth();
             break;
          case '5':
             break;

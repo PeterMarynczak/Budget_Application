@@ -1,5 +1,9 @@
 #include "income.h"
 
+bool Income::operator <(const Income& s1) const {
+    return this->date < s1.date;
+}
+
 void Income::setIncomeId(int newIncomeId){
 incomeId = newIncomeId;
 }

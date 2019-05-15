@@ -23,6 +23,7 @@ public:
         this->amount = amount;
     }
 
+    bool operator <(const Expense& s1) const;
     void setExpenseId(int newExpenseId);
     void setUserId(int newUserId);
     void setDate(string newDate);

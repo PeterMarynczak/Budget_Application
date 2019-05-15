@@ -47,7 +47,7 @@ bool AdjuvantMethods::checkIfDateIsCorrect(string date) {
     tm* now = localtime(&currentTime);
     int enteredUserDate = convertDateToInt(date);
     int youngestDate = 20000101;
-    int latestDate = (((now->tm_year + 1900) * 10000) +(100 * (now->tm_mon + 1) + lastDayOfCurrentMonth()));
+    int latestDate = (((now->tm_year + 1900) * 10000) +(100 * (now->tm_mon + 1) + getAmountOfDaysFromCurrentMonth()));
 
     if ((enteredUserDate >= youngestDate) && (enteredUserDate <= latestDate))
         return true;
@@ -59,8 +59,52 @@ int AdjuvantMethods::getDateOfLastDayFromCurrentMonthInInt(){
 
     time_t currentTime = time(0);
     tm* now = localtime(&currentTime);
-    int latestDate = (((now->tm_year + 1900) * 10000) + (100 * (now->tm_mon + 1) + lastDayOfCurrentMonth()));
+    int latestDate = (((now->tm_year + 1900) * 10000) + (100 * (now->tm_mon + 1) + getAmountOfDaysFromCurrentMonth()));
     return latestDate;
+}
+
+int AdjuvantMethods::getDateOfLastDayFromLastMonthInInt(){
+
+    time_t currentTime = time(0);
+    tm* now = localtime(&currentTime);
+    int latestDate = (((now->tm_year + 1900) * 10000) + (100 * (now->tm_mon) + getAmountOfDaysFromLastMonth()));
+    return latestDate;
+}
+
+int AdjuvantMethods::getAmountOfDaysFromLastMonth(){
+
+time_t currentTime = time(0);
+    tm* now = localtime(&currentTime);
+    int monthNr = now->tm_mon;
+    int lastDay;
+
+    switch (monthNr) {
+    case 1:
+    case 3:
+    case 5:
+    case 7:
+    case 8:
+    case 10:
+    case 12:
+        lastDay = 31;
+        break;
+    case 4:
+    case 6:
+    case 9:
+    case 11:
+        lastDay = 30;
+        break;
+    case 2:
+        int year = now->tm_year + 1900;
+        if (((year%4 == 0) && (year%100 != 0)) || (year%400 == 0)) {
+            lastDay = 29;
+            break;
+        } else
+            lastDay = 28;
+        break;
+    }
+    return lastDay;
+
 }
 
 
@@ -102,7 +146,7 @@ string AdjuvantMethods::convertIntToString(int number) {
     return str;
 }
 
-int AdjuvantMethods::lastDayOfCurrentMonth() {
+int AdjuvantMethods::getAmountOfDaysFromCurrentMonth() {
 
     time_t currentTime = time(0);
     tm* now = localtime(&currentTime);

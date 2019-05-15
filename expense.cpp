@@ -1,5 +1,9 @@
 #include "expense.h"
 
+bool Expense::operator <(const Expense& s1) const {
+    return this->date < s1.date;
+}
+
 void Expense::setExpenseId(int newExpenseId){
 expenseId = newExpenseId;
 }

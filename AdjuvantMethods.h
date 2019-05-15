@@ -21,8 +21,10 @@ public:
     static string getCurrentDate();
     float convertStringToFloat(string number);
     static int getDateOfLastDayFromCurrentMonthInInt();
+    static int getDateOfLastDayFromLastMonthInInt();
     static string checkIfSingleNumber (int number);
-    static int lastDayOfCurrentMonth();
+    static int getAmountOfDaysFromCurrentMonth();
+    static int getAmountOfDaysFromLastMonth();
     static string changeCommaToDot(string amount);
 
 };

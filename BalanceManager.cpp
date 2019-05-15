@@ -123,10 +123,12 @@ Expense BalanceManager::enterNewInfoAboutExpense() {
 
 void BalanceManager::showIncomeData() {
 
-    float sumOfIncomes = 0;
-    int AmountOfDaysFromCurrentMonth = AdjuvantMethods::lastDayOfCurrentMonth();
+    bilance = 0;
+    double sumOfIncomes = 0;
+    int AmountOfDaysFromCurrentMonth = AdjuvantMethods::getAmountOfDaysFromCurrentMonth();
     int lastDateInInt = AdjuvantMethods::getDateOfLastDayFromCurrentMonthInInt();
     int dateFromVector = 0;
+    sort(incomes.begin(),incomes.end());
 
     for (int i = 0; i < incomes.size(); i++) {
         dateFromVector = AdjuvantMethods::convertDateToInt(incomes[i].getDate());
@@ -139,14 +141,16 @@ void BalanceManager::showIncomeData() {
         }
     }
     cout << endl << "Suma przychodow w tym miesiacu wynosi: " << sumOfIncomes <<" zl" << endl;
+    bilance = sumOfIncomes;
 }
 
 void BalanceManager::showExpensesData() {
 
-    float sumOfExpenses = 0;
-    int AmountOfDaysFromCurrentMonth = AdjuvantMethods::lastDayOfCurrentMonth();
+    double sumOfExpenses = 0;
+    int AmountOfDaysFromCurrentMonth = AdjuvantMethods::getAmountOfDaysFromCurrentMonth();
     int lastDateInInt = AdjuvantMethods::getDateOfLastDayFromCurrentMonthInInt();
     int dateFromVector = 0;
+    sort(expenses.begin(),expenses.end());
 
     for (int i = 0; i < expenses.size(); i++) {
         dateFromVector = AdjuvantMethods::convertDateToInt(expenses[i].getDate());
@@ -159,6 +163,7 @@ void BalanceManager::showExpensesData() {
         }
     }
     cout << endl << "Suma wydatkow w tym miesiacu wynosi: " << sumOfExpenses <<" zl";
+    bilance -= sumOfExpenses;
 }
 
 void BalanceManager::showBilanceFromCurrentMonth(){
@@ -173,10 +178,87 @@ void BalanceManager::showBilanceFromCurrentMonth(){
         showExpensesData();
         cout << endl;
         cout << "-----------------------------------------------" << endl;
-        cout << "      >>> BILANS Z BIEZACEGO MIESIACA <<<" << endl;
-
+        cout << "      >>> BILANS <<<" << endl << endl;
+        cout << bilance << "zl" << endl << endl;
+        if (bilance > 0) cout << "Twoj bilans jest dodatni, trzymaj tak dalej" << endl << endl;
+        else cout << "Twoj bilans jest ujemny, uwazaj na wydatki" << endl;
+        bilance = 0;
 
     system("pause");
 }
+
+void BalanceManager::showBilanceFromLastMonth(){
+
+    system("cls");
+        cout << "    >>> BILANS Z OSTATNIEGO MIESIACA <<<" << endl;
+        cout << "-----------------------------------------------" << endl;
+        cout << "             >>> PRZYCHODY <<<" << endl;
+        showIncomeDataFromLastMonth();
+        cout << endl;
+        cout << "             >>> WYDATKI <<<" << endl;
+        showExpensesDataFromLastMonth();
+        cout << endl;
+        cout << "-----------------------------------------------" << endl;
+        cout << "      >>> BILANS <<<" << endl << endl;
+        cout << bilance << "zl" << endl << endl;
+        if (bilance > 0) cout << "Twoj bilans jest dodatni, trzymaj tak dalej" << endl << endl;
+        else cout << "Twoj bilans jest ujemny, uwazaj na wydatki" << endl;
+        bilance = 0;
+
+    system("pause");
+}
+
+void BalanceManager::showIncomeDataFromLastMonth(){
+
+    bilance = 0;
+    double sumOfIncomes = 0;
+    int AmountOfDaysFromLastMonth = AdjuvantMethods::getAmountOfDaysFromLastMonth();
+    int lastDateInInt = AdjuvantMethods::getDateOfLastDayFromLastMonthInInt();
+    int dateFromVector = 0;
+    sort(incomes.begin(),incomes.end());
+
+    for (int i = 0; i < incomes.size(); i++) {
+        dateFromVector = AdjuvantMethods::convertDateToInt(incomes[i].getDate());
+        if ( (dateFromVector <= lastDateInInt) && (dateFromVector >= lastDateInInt - AmountOfDaysFromLastMonth)) {
+            cout << endl << "Id przychodu: " << incomes[i].getIncomeId() << endl;
+            cout << "Data uzyskania przychodu:     " << incomes[i].getDate() << endl;
+            cout << "Przychod z tytulu:            " << incomes[i].getItem() << endl;
+            cout << "Kwota przychodu:              " << incomes[i].getAmount() << endl;
+            sumOfIncomes += atof(incomes[i].getAmount().c_str());
+        }
+    }
+    cout << endl << "Suma przychodow w ostatnim miesiacu wyniosla: " << sumOfIncomes <<" zl" << endl;
+    bilance = sumOfIncomes;
+}
+
+void BalanceManager::showExpensesDataFromLastMonth(){
+
+    double sumOfExpenses = 0;
+    int AmountOfDaysFromLastMonth = AdjuvantMethods::getAmountOfDaysFromLastMonth();
+    int lastDateInInt = AdjuvantMethods::getDateOfLastDayFromLastMonthInInt();
+    int dateFromVector = 0;
+    sort(expenses.begin(),expenses.end());
+
+    for (int i = 0; i < expenses.size(); i++) {
+        dateFromVector = AdjuvantMethods::convertDateToInt(expenses[i].getDate());
+        if ( (dateFromVector <= lastDateInInt) && (dateFromVector >= lastDateInInt - AmountOfDaysFromLastMonth)) {
+            cout << endl << "Id wydatku: " << expenses[i].getExpenseId() << endl;
+            cout << "Data wydatku:     "      << expenses[i].getDate() << endl;
+            cout << "Wydatek z tytulu:      " << expenses[i].getItem() << endl;
+            cout << "Kwota wydatku:         " << expenses[i].getAmount() << endl;
+            sumOfExpenses += atof(expenses[i].getAmount().c_str());
+        }
+    }
+    cout << endl << "Suma wydatkow w tym miesiacu wynosi: " << sumOfExpenses <<" zl";
+    bilance -= sumOfExpenses;
+}
+
+
+
+
+
+
+
+
 
 
