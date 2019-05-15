@@ -123,7 +123,7 @@ Expense BalanceManager::enterNewInfoAboutExpense() {
 
 void BalanceManager::showIncomeData() {
 
-    bilance = 0;
+    balance = 0;
     double sumOfIncomes = 0;
     int AmountOfDaysFromCurrentMonth = AdjuvantMethods::getAmountOfDaysFromCurrentMonth();
     int lastDateInInt = AdjuvantMethods::getDateOfLastDayFromCurrentMonthInInt();
@@ -141,7 +141,7 @@ void BalanceManager::showIncomeData() {
         }
     }
     cout << endl << "Suma przychodow w tym miesiacu wynosi: " << sumOfIncomes <<" zl" << endl;
-    bilance = sumOfIncomes;
+    balance = sumOfIncomes;
 }
 
 void BalanceManager::showExpensesData() {
@@ -163,54 +163,59 @@ void BalanceManager::showExpensesData() {
         }
     }
     cout << endl << "Suma wydatkow w tym miesiacu wynosi: " << sumOfExpenses <<" zl";
-    bilance -= sumOfExpenses;
+    balance -= sumOfExpenses;
 }
 
-void BalanceManager::showBilanceFromCurrentMonth(){
+void BalanceManager::showBilanceFromCurrentMonth() {
 
     system("cls");
-        cout << "    >>> BILANS Z BIEZACEGO MIESIACA <<<" << endl;
-        cout << "-----------------------------------------------" << endl;
-        cout << "             >>> PRZYCHODY <<<" << endl;
-        showIncomeData();
-        cout << endl;
-        cout << "             >>> WYDATKI <<<" << endl;
-        showExpensesData();
-        cout << endl;
-        cout << "-----------------------------------------------" << endl;
-        cout << "      >>> BILANS <<<" << endl << endl;
-        cout << bilance << "zl" << endl << endl;
-        if (bilance > 0) cout << "Twoj bilans jest dodatni, trzymaj tak dalej" << endl << endl;
-        else cout << "Twoj bilans jest ujemny, uwazaj na wydatki" << endl;
-        bilance = 0;
+    cout << "    >>> BILANS Z BIEZACEGO MIESIACA <<<" << endl;
+    cout << "-----------------------------------------------" << endl;
+    cout << "             >>> PRZYCHODY <<<" << endl;
+    showIncomeData();
+    cout << endl;
+    cout << "             >>> WYDATKI <<<" << endl;
+    showExpensesData();
+    cout << endl;
+    cout << "-----------------------------------------------" << endl;
+    cout << "             >>> BILANS <<<" << endl << endl;
+    cout << balance << "zl" << endl << endl;
+    if (balance > 0)
+        cout << "Twoj bilans jest dodatni, trzymaj tak dalej" << endl << endl;
+    else
+        cout << "Twoj bilans jest ujemny, uwazaj na wydatki" << endl;
+    balance = 0;
 
     system("pause");
 }
 
-void BalanceManager::showBilanceFromLastMonth(){
+void BalanceManager::showBilanceFromLastMonth() {
 
     system("cls");
-        cout << "    >>> BILANS Z OSTATNIEGO MIESIACA <<<" << endl;
-        cout << "-----------------------------------------------" << endl;
-        cout << "             >>> PRZYCHODY <<<" << endl;
-        showIncomeDataFromLastMonth();
-        cout << endl;
-        cout << "             >>> WYDATKI <<<" << endl;
-        showExpensesDataFromLastMonth();
-        cout << endl;
-        cout << "-----------------------------------------------" << endl;
-        cout << "      >>> BILANS <<<" << endl << endl;
-        cout << bilance << "zl" << endl << endl;
-        if (bilance > 0) cout << "Twoj bilans jest dodatni, trzymaj tak dalej" << endl << endl;
-        else cout << "Twoj bilans jest ujemny, uwazaj na wydatki" << endl;
-        bilance = 0;
+    cout << "    >>> BILANS Z OSTATNIEGO MIESIACA <<<" << endl;
+    cout << "-----------------------------------------------" << endl;
+    cout << "             >>> PRZYCHODY <<<" << endl;
+    showIncomeDataFromLastMonth();
+    cout << endl;
+    cout << "-----------------------------------------------" << endl;
+    cout << "             >>> WYDATKI <<<" << endl;
+    showExpensesDataFromLastMonth();
+    cout << endl;
+    cout << "-----------------------------------------------" << endl;
+    cout << "             >>> BILANS <<<" << endl << endl;
+    cout << balance << "zl" << endl << endl;
+    if (balance > 0)
+        cout << "Twoj bilans jest dodatni, trzymaj tak dalej" << endl << endl;
+    else
+        cout << "Twoj bilans jest ujemny, uwazaj na wydatki" << endl;
+    balance = 0;
 
     system("pause");
 }
 
-void BalanceManager::showIncomeDataFromLastMonth(){
+void BalanceManager::showIncomeDataFromLastMonth() {
 
-    bilance = 0;
+    balance = 0;
     double sumOfIncomes = 0;
     int AmountOfDaysFromLastMonth = AdjuvantMethods::getAmountOfDaysFromLastMonth();
     int lastDateInInt = AdjuvantMethods::getDateOfLastDayFromLastMonthInInt();
@@ -228,10 +233,10 @@ void BalanceManager::showIncomeDataFromLastMonth(){
         }
     }
     cout << endl << "Suma przychodow w ostatnim miesiacu wyniosla: " << sumOfIncomes <<" zl" << endl;
-    bilance = sumOfIncomes;
+    balance = sumOfIncomes;
 }
 
-void BalanceManager::showExpensesDataFromLastMonth(){
+void BalanceManager::showExpensesDataFromLastMonth() {
 
     double sumOfExpenses = 0;
     int AmountOfDaysFromLastMonth = AdjuvantMethods::getAmountOfDaysFromLastMonth();
@@ -250,10 +255,65 @@ void BalanceManager::showExpensesDataFromLastMonth(){
         }
     }
     cout << endl << "Suma wydatkow w tym miesiacu wynosi: " << sumOfExpenses <<" zl";
-    bilance -= sumOfExpenses;
+    balance -= sumOfExpenses;
 }
 
+void BalanceManager::showBalanceFromSelectedPeriodOfTime() {
 
+    string firstDate, lastDate;
+    double sumOfIncomes = 0;
+    double sumOfExpenses = 0;
+    balance = 0;
+
+    system("cls");
+    cout << "    >>> BILANS Z WYBRANEGO OKRESU <<<" << endl;
+    cout << "-----------------------------------------------" << endl;
+    cout << "Podaj, od jakiego dnia policzyc bilans (rrrr-mm-dd np. 2017-11-01): ";
+    firstDate = AdjuvantMethods::readLine();
+    if (AdjuvantMethods::checkIfDateIsCorrect(firstDate) == true) {
+        cout << endl << "Podaj, do jakiego dnia policzyc bilans (rrrr-mm-dd np. 2017-11-01): " ;
+        lastDate = AdjuvantMethods::readLine();
+        if (AdjuvantMethods::checkIfDateIsCorrect(lastDate) == true) {
+            sort(incomes.begin(),incomes.end());
+            sort(expenses.begin(),expenses.end());
+            cout << endl << "        >>> PRZYCHODY <<<" << endl;
+            for (int i = 0; i < incomes.size(); i++) {
+                if ( (incomes[i].getDate() >= firstDate) && (incomes[i].getDate() <= lastDate) ) {
+                    cout << endl << "Id przychodu: " << incomes[i].getIncomeId() << endl;
+                    cout << "Data przychodu:     "      << incomes[i].getDate() << endl;
+                    cout << "Przychod z tytulu:      " << incomes[i].getItem() << endl;
+                    cout << "Kwota przychodu:         " << incomes[i].getAmount() << endl;
+                    sumOfIncomes += atof(incomes[i].getAmount().c_str());
+                }
+            }
+            cout << endl << "     >>> WYDATKI <<<" << endl;
+            for (int i = 0; i < expenses.size(); i++) {
+                if ( (expenses[i].getDate() >= firstDate) && (expenses[i].getDate() <= lastDate) ) {
+                    cout << endl << "Id wydatku: " << expenses[i].getExpenseId() << endl;
+                    cout << "Data wydatku:     "      << expenses[i].getDate() << endl;
+                    cout << "Wydatek z tytulu:      " << expenses[i].getItem() << endl;
+                    cout << "Kwota wydatku:         " << expenses[i].getAmount() << endl;
+                    sumOfExpenses += atof(expenses[i].getAmount().c_str());
+                }
+            }
+        }
+        balance = sumOfIncomes - sumOfExpenses;
+
+        cout << endl;
+        cout << "-----------------------------------------------" << endl;
+        cout << "      >>> BILANS <<<" << endl << endl;
+        cout << balance << "zl" << endl << endl;
+        if (balance > 0)
+            cout << "Twoj bilans jest dodatni, trzymaj tak dalej" << endl << endl;
+        else
+            cout << "Twoj bilans jest ujemny, uwazaj na wydatki" << endl;
+        balance = 0;
+        system("pause");
+    } else {
+        cout << "Wprowadzona data  jest nieprawidlowa, sprobuj ponownie pozniej" << endl;
+        system("pause");
+    }
+}
 
 
 

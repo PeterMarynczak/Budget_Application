@@ -42,6 +42,7 @@ int main() {
              budget.showBilanceFromLastMonth();
             break;
          case '5':
+             budget.showBalanceFromSelectedPeriodOfTime();
             break;
          case '6':
             budget.changeUserPassword();

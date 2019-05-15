@@ -38,6 +38,7 @@ public:
     void addExpense();
     void showBilanceFromCurrentMonth();
     void showBilanceFromLastMonth();
+    void showBalanceFromSelectedPeriodOfTime();
 
 };
 
